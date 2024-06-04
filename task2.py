@@ -1,12 +1,13 @@
 import turtle
+scale_factor = 0.9
 
 def draw_tree(t, branch_len, angle, level):
     if level > 0:
         t.forward(branch_len)
         t.left(angle)
-        draw_tree(t, branch_len - 15, angle, level - 1)
+        draw_tree(t, branch_len * scale_factor, angle, level - 1)
         t.right(2 * angle)
-        draw_tree(t, branch_len - 15, angle, level - 1)
+        draw_tree(t, branch_len * scale_factor, angle, level - 1)
         t.left(angle)
         t.backward(branch_len)
 

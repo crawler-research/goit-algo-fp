@@ -8,12 +8,13 @@ def greedy_algorithm(items, budget):
             result.append(item)
     return result
 
+
 def dynamic_programming(items, budget):
-    dp = [0] * (budget + 1)
-    for i in range(1, budget + 1):
-        for item, info in items.items():
-            if info['cost'] <= i:
-                dp[i] = max(dp[i], dp[i - info['cost']] + info['calories'])
+    dp = [0 for _ in range(budget + 1)]
+    for item, info in items.items():
+        for i in range(budget, info['cost'] - 1, -1):
+            dp[i] = max(dp[i], dp[i - info['cost']] + info['calories'])
+
     result = []
     i = budget
     while i > 0:
@@ -22,6 +23,7 @@ def dynamic_programming(items, budget):
                 result.append(item)
                 i -= info['cost']
                 break
+
     return result
 
 # Test
